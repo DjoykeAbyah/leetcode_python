@@ -1,31 +1,34 @@
 class Solution(object):
     def four_sum(self, nums, target):
-        result_set = []
+        result_set = set()
         pair_map = {}
         nums_len = len(nums)
 
         for i in range(nums_len - 1):
-            for j in range(nums_len + 1, nums_len):
+            for j in range(i + 1, nums_len):
                 pair_sum = nums[i] + nums[j]
                 if pair_sum not in pair_map:
                     pair_map[pair_sum] = []
-                    pair_map[pair_sum].append(i, j)
+                pair_map[pair_sum].append((i, j))
 
-        for i in range(nums_len(nums - 1)):
-            for j in range(nums_len(nums + 1), n):
-                current_sum = mums[i] + nums[j]
+        for i in range(nums_len - 1):
+            for j in range(i + 1, nums_len):
+                current_sum = nums[i] + nums[j]
                 leftover_sum = target - current_sum
 
                 if leftover_sum in pair_map:
                     for pair in pair_map[leftover_sum]: # check every pair containing that sum
                         x, y = pair
-                        quadruplet = sorted[sum[i], sum[j], sum[x], sum[y]]
-                        result_set.append(quadruplet)
-        
-        return list(result_set)
+                        if i != x and i != y and j != x and i != y:
+                            quadruplet = sorted([nums[i], nums[j], nums[x], nums[y]])
+                            result_set.add(tuple(quadruplet)) # use add 
+        result = []
+        for quadruplet in result_set:
+            result.append(list(quadruplet))
+        return result
 
-def test_four_sum()
-    assert solution.four_sum([1,0,-1,0,-2,2], 0) = [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-    print("all tests passed successfully")
+solution = Solution()
 
-test_four_sum()
+print(solution.four_sum([1, 0, -1, 0, -2, 2], 0))
+# expected = [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+
